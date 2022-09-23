@@ -1,0 +1,8 @@
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\obj\Debug\QL_CanBo.csproj.AssemblyReference.cache
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\obj\Debug\QL_CanBo.csproj.SuggestedBindingRedirects.cache
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\obj\Debug\QL_CanBo.csproj.CoreCompileInputs.cache
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\bin\Debug\QL_CanBo.exe.config
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\bin\Debug\QL_CanBo.exe
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\bin\Debug\QL_CanBo.pdb
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\obj\Debug\QL_CanBo.exe
+C:\Users\Cong Hao\source\repos\QL_CanBo\QL_CanBo\obj\Debug\QL_CanBo.pdb
