@@ -15,6 +15,7 @@ namespace QL_NhanVien
         public Input()
         {
             InitializeComponent();
+            grbstt.Hide();
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -41,11 +42,11 @@ namespace QL_NhanVien
             {
                 for(int i = 0; i < dtVDs.Rows.Count; i++)
                 {
-                    if (dtVDs.Rows[i].Cells[0] != null && string.Compare((string)dtVDs.Rows[i].Cells[7].Value, "Lễ tân") == 0)
+                    if (dtVDs.Rows[i].Cells[0] != null && string.Compare((string)dtVDs.Rows[i].Cells[8].Value, "Lễ tân") == 0)
                     {
                         countlt++;
                     }
-                    if (dtVDs.Rows[i].Cells[0] != null && string.Compare((string)dtVDs.Rows[i].Cells[7].Value, "Thu ngân") == 0)
+                    if (dtVDs.Rows[i].Cells[0] != null && string.Compare((string)dtVDs.Rows[i].Cells[8].Value, "Thu ngân") == 0)
                     {
                         counttn++;
                     }
@@ -63,11 +64,10 @@ namespace QL_NhanVien
             string sdt = tBSDT.Text;
             string money = tbMoney.Text;
             string chucvu = "";
-            //int i = 1;
-            //int j = 1;
             string codeNv = "";
             DataGridViewRow newrow = new DataGridViewRow();
             newrow.CreateCells(dtVDs);
+            newrow.Cells[0].Value = dtVDs.Rows.Count;
             if (rbLetan.Checked)
             {
                 codeNv = "NV.LT" + countlt;
@@ -78,7 +78,7 @@ namespace QL_NhanVien
                 codeNv = "NV.TN" + counttn;
                 chucvu = "Thu ngân";
             }
-            newrow.Cells[0].Value = codeNv;
+            newrow.Cells[1].Value = codeNv;
             
             if(name.Length == 0)
             {
@@ -86,21 +86,21 @@ namespace QL_NhanVien
             }
             else if (NhanVien.eventString(name))
             {
-                newrow.Cells[1].Value = name;
+                newrow.Cells[2].Value = name;
             }
             else
             {
                 message += "Tên không được chứa ký tự đặt biệt và số !!\n";
             }
-            newrow.Cells[2].Value = birth;
-            newrow.Cells[3].Value =gender;
+            newrow.Cells[3].Value = birth;
+            newrow.Cells[4].Value =gender;
             if(add.Length == 0)
             {
                 thongb += "Không được để trống địa chỉ!\n";
             }
             else
             {
-                newrow.Cells[4].Value = add;
+                newrow.Cells[5].Value = add;
             }
             if(sdt.Length == 0)
             {
@@ -108,7 +108,7 @@ namespace QL_NhanVien
             }
            else if (NhanVien.KTSDT(sdt))
             {
-                newrow.Cells[5].Value = sdt;
+                newrow.Cells[6].Value = sdt;
             }
             else
             {
@@ -120,14 +120,14 @@ namespace QL_NhanVien
             }
             else if (NhanVien.KTSDT(money))
             {
-                newrow.Cells[6].Value =money;
+                newrow.Cells[7].Value =money;
             }
             
             else
             {
                 message += "Tiền chỉ được nhập số !!\n";
             }
-            newrow.Cells[7].Value = chucvu;
+            newrow.Cells[8].Value = chucvu;
             if(thongb.Length == 0)
             {
                 if (message.Length != 0)
@@ -155,18 +155,51 @@ namespace QL_NhanVien
 
         private void btXoa_Click(object sender, EventArgs e)
         {
-            lbThongb.Width = 150;
-            lbThongb.Height = 250;
-            lbThongb.Text = "Xóa thành công !!";
-            lbThongb.BorderStyle = BorderStyle.Fixed3D;
+            grbstt.Show();
             btXoa.BackColor = Color.White;
             btXoa.ForeColor = Color.DarkBlue;
+            
            
         }
 
         private void btThoat_Click(object sender, EventArgs e)
         {
+            btThem.BackColor = Color.White;
+            btThem.ForeColor = Color.DarkBlue;
+            Application.Exit();
+        }
 
+        private void btOk_Click(object sender, EventArgs e)
+
+        {
+            if(dtVDs.Rows.Count > 0 && numStt.Value < dtVDs.Rows.Count)
+            {
+                for (int i = 0; i < dtVDs.Rows.Count; i++)
+                {
+                    if (numStt.Value == i + 1)
+                    {
+                        dtVDs.Rows.RemoveAt(i);
+                    }
+                }
+            }
+            else
+            {
+                lbThongb.Text = "Xóa không thành công !!";
+                MessageBox.Show("Không tồn tại {0} !!\n", numStt.Value.ToString());
+                
+            }
+            if (dtVDs.Rows.Count != 0)
+            {
+                for (int i = 0; i < dtVDs.Rows.Count; i++)
+                {
+                    dtVDs.Rows[i].Cells[0].Value = i + 1;
+                }
+                lbThongb.Text = "Xóa thành công !!";
+            }
+            lbThongb.Width = 150;
+            lbThongb.Height = 250;
+            lbThongb.BorderStyle = BorderStyle.Fixed3D;
+            grbstt.Hide();
         }
     }
 }

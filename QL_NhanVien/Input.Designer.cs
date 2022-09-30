@@ -30,6 +30,9 @@
         {
             this.lbTitle = new System.Windows.Forms.Label();
             this.grbTTin = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rBNam = new System.Windows.Forms.RadioButton();
+            this.rBNu = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbLetan = new System.Windows.Forms.RadioButton();
             this.rbThungan = new System.Windows.Forms.RadioButton();
@@ -45,8 +48,6 @@
             this.lbAdd = new System.Windows.Forms.Label();
             this.tBSDT = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rBNu = new System.Windows.Forms.RadioButton();
-            this.rBNam = new System.Windows.Forms.RadioButton();
             this.lbGender = new System.Windows.Forms.Label();
             this.dateT = new System.Windows.Forms.DateTimePicker();
             this.lbBirth = new System.Windows.Forms.Label();
@@ -54,6 +55,8 @@
             this.lbName = new System.Windows.Forms.Label();
             this.nbTile = new System.Windows.Forms.Label();
             this.dtVDs = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.clSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,12 +65,16 @@
             this.clSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clCv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grbstt = new System.Windows.Forms.GroupBox();
+            this.btOk = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numStt = new System.Windows.Forms.NumericUpDown();
             this.grbTTin.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtVDs)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            this.grbstt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numStt)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTitle
@@ -83,6 +90,7 @@
             // grbTTin
             // 
             this.grbTTin.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.grbTTin.Controls.Add(this.grbstt);
             this.grbTTin.Controls.Add(this.groupBox2);
             this.grbTTin.Controls.Add(this.groupBox1);
             this.grbTTin.Controls.Add(this.lbThongb);
@@ -109,6 +117,42 @@
             this.grbTTin.TabIndex = 2;
             this.grbTTin.TabStop = false;
             this.grbTTin.Text = "Thông Tin";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox2.Controls.Add(this.rBNam);
+            this.groupBox2.Controls.Add(this.rBNu);
+            this.groupBox2.Location = new System.Drawing.Point(364, 66);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(131, 57);
+            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabStop = false;
+            // 
+            // rBNam
+            // 
+            this.rBNam.AutoSize = true;
+            this.rBNam.Checked = true;
+            this.rBNam.Location = new System.Drawing.Point(6, 21);
+            this.rBNam.Name = "rBNam";
+            this.rBNam.Size = new System.Drawing.Size(57, 20);
+            this.rBNam.TabIndex = 6;
+            this.rBNam.TabStop = true;
+            this.rBNam.Text = "Nam";
+            this.rBNam.UseVisualStyleBackColor = true;
+            // 
+            // rBNu
+            // 
+            this.rBNu.AutoSize = true;
+            this.rBNu.Location = new System.Drawing.Point(79, 21);
+            this.rBNu.Name = "rBNu";
+            this.rBNu.Size = new System.Drawing.Size(45, 20);
+            this.rBNu.TabIndex = 7;
+            this.rBNu.TabStop = true;
+            this.rBNu.Text = "Nữ";
+            this.rBNu.UseVisualStyleBackColor = true;
+            this.rBNu.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -249,30 +293,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Số điện thoại:";
             // 
-            // rBNu
-            // 
-            this.rBNu.AutoSize = true;
-            this.rBNu.Location = new System.Drawing.Point(79, 21);
-            this.rBNu.Name = "rBNu";
-            this.rBNu.Size = new System.Drawing.Size(45, 20);
-            this.rBNu.TabIndex = 7;
-            this.rBNu.TabStop = true;
-            this.rBNu.Text = "Nữ";
-            this.rBNu.UseVisualStyleBackColor = true;
-            this.rBNu.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // rBNam
-            // 
-            this.rBNam.AutoSize = true;
-            this.rBNam.Checked = true;
-            this.rBNam.Location = new System.Drawing.Point(6, 21);
-            this.rBNam.Name = "rBNam";
-            this.rBNam.Size = new System.Drawing.Size(57, 20);
-            this.rBNam.TabIndex = 6;
-            this.rBNam.TabStop = true;
-            this.rBNam.Text = "Nam";
-            this.rBNam.UseVisualStyleBackColor = true;
-            // 
             // lbGender
             // 
             this.lbGender.AutoSize = true;
@@ -329,6 +349,7 @@
             this.dtVDs.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dtVDs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtVDs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clSTT,
             this.clMa,
             this.clName,
             this.clBirth,
@@ -342,64 +363,8 @@
             this.dtVDs.ReadOnly = true;
             this.dtVDs.RowHeadersWidth = 51;
             this.dtVDs.RowTemplate.Height = 24;
-            this.dtVDs.Size = new System.Drawing.Size(921, 540);
+            this.dtVDs.Size = new System.Drawing.Size(921, 550);
             this.dtVDs.TabIndex = 4;
-            // 
-            // clMa
-            // 
-            this.clMa.HeaderText = "Mã nhân viên";
-            this.clMa.MinimumWidth = 6;
-            this.clMa.Name = "clMa";
-            this.clMa.Width = 115;
-            // 
-            // clName
-            // 
-            this.clName.HeaderText = "Họ và tên";
-            this.clName.MinimumWidth = 6;
-            this.clName.Name = "clName";
-            this.clName.Width = 125;
-            // 
-            // clBirth
-            // 
-            this.clBirth.HeaderText = "Ngày sinh";
-            this.clBirth.MinimumWidth = 6;
-            this.clBirth.Name = "clBirth";
-            this.clBirth.Width = 125;
-            // 
-            // clGender
-            // 
-            this.clGender.HeaderText = "Giới tính";
-            this.clGender.MinimumWidth = 6;
-            this.clGender.Name = "clGender";
-            this.clGender.Width = 125;
-            // 
-            // clAdd
-            // 
-            this.clAdd.HeaderText = "Địa chỉ";
-            this.clAdd.MinimumWidth = 6;
-            this.clAdd.Name = "clAdd";
-            this.clAdd.Width = 125;
-            // 
-            // clSDT
-            // 
-            this.clSDT.HeaderText = "Số điện thoại";
-            this.clSDT.MinimumWidth = 6;
-            this.clSDT.Name = "clSDT";
-            this.clSDT.Width = 125;
-            // 
-            // clMoney
-            // 
-            this.clMoney.HeaderText = "Lương cơ bản";
-            this.clMoney.MinimumWidth = 6;
-            this.clMoney.Name = "clMoney";
-            this.clMoney.Width = 125;
-            // 
-            // clCv
-            // 
-            this.clCv.HeaderText = "Chức vụ";
-            this.clCv.MinimumWidth = 6;
-            this.clCv.Name = "clCv";
-            this.clCv.Width = 125;
             // 
             // label2
             // 
@@ -411,17 +376,130 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "TUYỂN NHÂN VIÊN\r\n";
             // 
-            // groupBox2
+            // clSTT
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox2.Controls.Add(this.rBNam);
-            this.groupBox2.Controls.Add(this.rBNu);
-            this.groupBox2.Location = new System.Drawing.Point(364, 66);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(131, 57);
-            this.groupBox2.TabIndex = 23;
-            this.groupBox2.TabStop = false;
+            this.clSTT.HeaderText = "STT";
+            this.clSTT.MinimumWidth = 6;
+            this.clSTT.Name = "clSTT";
+            this.clSTT.ReadOnly = true;
+            this.clSTT.Width = 50;
+            // 
+            // clMa
+            // 
+            this.clMa.HeaderText = "Mã nhân viên";
+            this.clMa.MinimumWidth = 6;
+            this.clMa.Name = "clMa";
+            this.clMa.ReadOnly = true;
+            this.clMa.Width = 115;
+            // 
+            // clName
+            // 
+            this.clName.HeaderText = "Họ và tên";
+            this.clName.MinimumWidth = 6;
+            this.clName.Name = "clName";
+            this.clName.ReadOnly = true;
+            this.clName.Width = 125;
+            // 
+            // clBirth
+            // 
+            this.clBirth.HeaderText = "Ngày sinh";
+            this.clBirth.MinimumWidth = 6;
+            this.clBirth.Name = "clBirth";
+            this.clBirth.ReadOnly = true;
+            this.clBirth.Width = 125;
+            // 
+            // clGender
+            // 
+            this.clGender.HeaderText = "Giới tính";
+            this.clGender.MinimumWidth = 6;
+            this.clGender.Name = "clGender";
+            this.clGender.ReadOnly = true;
+            this.clGender.Width = 125;
+            // 
+            // clAdd
+            // 
+            this.clAdd.HeaderText = "Địa chỉ";
+            this.clAdd.MinimumWidth = 6;
+            this.clAdd.Name = "clAdd";
+            this.clAdd.ReadOnly = true;
+            this.clAdd.Width = 125;
+            // 
+            // clSDT
+            // 
+            this.clSDT.HeaderText = "Số điện thoại";
+            this.clSDT.MinimumWidth = 6;
+            this.clSDT.Name = "clSDT";
+            this.clSDT.ReadOnly = true;
+            this.clSDT.Width = 125;
+            // 
+            // clMoney
+            // 
+            this.clMoney.HeaderText = "Lương cơ bản";
+            this.clMoney.MinimumWidth = 6;
+            this.clMoney.Name = "clMoney";
+            this.clMoney.ReadOnly = true;
+            this.clMoney.Width = 125;
+            // 
+            // clCv
+            // 
+            this.clCv.HeaderText = "Chức vụ";
+            this.clCv.MinimumWidth = 6;
+            this.clCv.Name = "clCv";
+            this.clCv.ReadOnly = true;
+            this.clCv.Width = 125;
+            // 
+            // grbstt
+            // 
+            this.grbstt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.grbstt.Controls.Add(this.numStt);
+            this.grbstt.Controls.Add(this.label3);
+            this.grbstt.Controls.Add(this.btOk);
+            this.grbstt.Location = new System.Drawing.Point(106, 469);
+            this.grbstt.Name = "grbstt";
+            this.grbstt.Size = new System.Drawing.Size(333, 71);
+            this.grbstt.TabIndex = 24;
+            this.grbstt.TabStop = false;
+            // 
+            // btOk
+            // 
+            this.btOk.Location = new System.Drawing.Point(252, 27);
+            this.btOk.Name = "btOk";
+            this.btOk.Size = new System.Drawing.Size(75, 23);
+            this.btOk.TabIndex = 25;
+            this.btOk.Text = "OK";
+            this.btOk.UseVisualStyleBackColor = true;
+            this.btOk.Click += new System.EventHandler(this.btOk_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(26, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "STT:";
+            // 
+            // numStt
+            // 
+            this.numStt.Location = new System.Drawing.Point(95, 27);
+            this.numStt.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numStt.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numStt.Name = "numStt";
+            this.numStt.Size = new System.Drawing.Size(120, 22);
+            this.numStt.TabIndex = 25;
+            this.numStt.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Input
             // 
@@ -436,11 +514,14 @@
             this.Text = "Input";
             this.grbTTin.ResumeLayout(false);
             this.grbTTin.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtVDs)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grbstt.ResumeLayout(false);
+            this.grbstt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numStt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,6 +552,12 @@
         private System.Windows.Forms.Label lbChucvu;
         private System.Windows.Forms.Button btThem;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbThongb;
+        private System.Windows.Forms.Button btXoa;
+        private System.Windows.Forms.Button btThoat;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMa;
         private System.Windows.Forms.DataGridViewTextBoxColumn clName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clBirth;
@@ -479,10 +566,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clSDT;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMoney;
         private System.Windows.Forms.DataGridViewTextBoxColumn clCv;
-        private System.Windows.Forms.Label lbThongb;
-        private System.Windows.Forms.Button btXoa;
-        private System.Windows.Forms.Button btThoat;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grbstt;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btOk;
+        private System.Windows.Forms.NumericUpDown numStt;
     }
 }
