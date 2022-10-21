@@ -194,6 +194,8 @@ namespace QLNhanVien
             DialogResult dialog = MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(dialog == DialogResult.Yes)
             {
+                this.Hide();
+                new MenuStaff().ShowDialog();
                 this.Close();
             }
            

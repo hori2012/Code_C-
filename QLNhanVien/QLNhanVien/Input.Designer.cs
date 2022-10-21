@@ -435,7 +435,7 @@
             // 
             this.lbTileDs.AutoSize = true;
             this.lbTileDs.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbTileDs.Location = new System.Drawing.Point(336, 26);
+            this.lbTileDs.Location = new System.Drawing.Point(328, 17);
             this.lbTileDs.Name = "lbTileDs";
             this.lbTileDs.Size = new System.Drawing.Size(173, 23);
             this.lbTileDs.TabIndex = 0;
@@ -445,7 +445,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 538);
+            this.BackColor = System.Drawing.Color.Linen;
+            this.ClientSize = new System.Drawing.Size(1299, 518);
             this.Controls.Add(this.pnDS);
             this.Controls.Add(this.grThongtin);
             this.Name = "Input";

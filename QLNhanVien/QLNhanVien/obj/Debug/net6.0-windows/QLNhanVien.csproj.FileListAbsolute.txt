@@ -24,3 +24,5 @@ C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\bin\Debug\net6.0-windows\ru
 C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\obj\Debug\net6.0-windows\QLNhanVien.csproj.CopyComplete
 C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\obj\Debug\net6.0-windows\QLNhanVien.Update.resources
+C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\obj\Debug\net6.0-windows\QLNhanVien.MenuStaff.resources
+C:\Users\Cong Hao\source\repos\QLNhanVien\QLNhanVien\obj\Debug\net6.0-windows\QLNhanVien.Properties.Resources.resources

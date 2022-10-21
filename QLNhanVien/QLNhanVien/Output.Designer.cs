@@ -273,6 +273,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Linen;
             this.groupBox1.Controls.Add(this.btThoat);
             this.groupBox1.Controls.Add(this.btSua);
             this.groupBox1.Controls.Add(this.btXoa);
@@ -335,7 +336,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 677);
+            this.BackColor = System.Drawing.Color.Linen;
+            this.ClientSize = new System.Drawing.Size(1062, 664);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbTile);

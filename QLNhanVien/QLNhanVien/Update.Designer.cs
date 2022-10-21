@@ -272,6 +272,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(800, 357);
             this.Controls.Add(this.btThoat);
             this.Controls.Add(this.btCapnhat);
