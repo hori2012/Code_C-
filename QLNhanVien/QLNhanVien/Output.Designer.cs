@@ -95,6 +95,7 @@
             // 
             // btQuaylai
             // 
+            this.btQuaylai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btQuaylai.Location = new System.Drawing.Point(536, 100);
             this.btQuaylai.Name = "btQuaylai";
             this.btQuaylai.Size = new System.Drawing.Size(94, 29);
@@ -298,6 +299,7 @@
             // 
             // btSua
             // 
+            this.btSua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSua.Location = new System.Drawing.Point(478, 400);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(94, 29);
@@ -319,7 +321,7 @@
             // 
             // dtVDs
             // 
-            this.dtVDs.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dtVDs.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dtVDs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtVDs.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtVDs.Location = new System.Drawing.Point(1, 26);
@@ -342,6 +344,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbTile);
             this.Name = "Output";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Danh sách nhân viên";
             this.Load += new System.EventHandler(this.Output_Load);
             this.panel1.ResumeLayout(false);

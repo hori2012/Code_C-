@@ -1,0 +1,204 @@
+
+create table Khachhang(
+	makhachhang nvarchar (10) not null,
+	hoten nvarchar (30) not null,
+	gioitinh nvarchar (10),
+	ngaysinh date,
+	diachi nvarchar(30),
+	cccd char (12),
+	sdt char (10),
+	primary key (makhachhang),
+);
+
+create table Phong(
+	maphong nvarchar(10) not null,
+	sophong int,
+	loaiphong nvarchar(10),
+	giaphong money,
+	tinhtrangphong nvarchar(10),
+	primary key (maphong)
+);
+
+create table Nhanvien(
+	manhanvien nvarchar (15) not null,
+	hoten nvarchar (30),
+	ngaysinh date,
+	gioitinh nvarchar (10),
+	diachi nvarchar (50),
+	sdt int,
+	ngayvaolam date,
+	chucvu nvarchar(15),
+	luong money,
+	primary key (manhanvien)
+);
+
+create table Hoadonthanhtoan(
+	mahoadon nvarchar (15) not null,
+	ngaylaphd date,
+	thanhtien money,
+	makhachhang nvarchar (10) not null,
+	manhanvien nvarchar (15) not null,
+	primary key (mahoadon),
+	foreign key (makhachhang) references Khachhang(makhachhang),
+	foreign key (manhanvien) references Nhanvien(manhanvien)
+);
+
+create table Phieuthue(
+	maphieuthue nvarchar (15) not null,
+	makhachhang nvarchar (10) not null,
+	ngaylapphieuthue date,
+	sotiendattruoc money,
+	soluongP int,
+	primary key (maphieuthue),
+	foreign key (makhachhang) references Khachhang(makhachhang)
+);
+
+create table Chitietphieuthuephong(
+	maphieuthue nvarchar (15) not null,
+	maphong nvarchar(10) not null,
+	primary key(maphieuthue,maphong),
+	foreign key (maphong) references Phong(maphong), 
+	foreign key (maphieuthue) references Phieuthue(maphieuthue)
+);
+
+create table Dichvu(
+	madichvu nvarchar(20) not null,
+	tendichvu nvarchar(30),
+	giadichvu money,
+	primary key(madichvu)
+);
+
+create table Dichvusudung(
+	madichvu nvarchar(20) not null,
+	makhachhang nvarchar (10) not null,
+	primary key(madichvu,makhachhang),
+	foreign key (makhachhang) references Khachhang(makhachhang),
+	foreign key (madichvu) references Dichvu(madichvu)
+);
+
+create table Chitiethoadon(
+	madichvu nvarchar(20) not null,
+	maphieuthue nvarchar (15) not null,
+	mahoadon nvarchar (15) not null,
+	primary key(madichvu,maphieuthue,mahoadon),
+	foreign key (madichvu) references Dichvu(madichvu),
+	foreign key (maphieuthue) references Phieuthue(maphieuthue),
+	foreign key (mahoadon) references Hoadonthanhtoan(mahoadon)
+);
+
+insert into Khachhang values (N'KH1',N'Phạm Chí Hùng',N'Nam',N'2002-05-15',N'TPHCM',N'079202001113',N'0381475689');
+insert into Khachhang values (N'KH2',N'Huỳnh Ngọc Tài',N'Nam',N'2002-02-18',N'TPHCM',N'079202045672',N'0385792541');
+insert into Khachhang values (N'KH3',N'Nguyễn Thị Lan',N'Nữ',N'2002-03-17',N'Huế',N'079202236570',N'0381965403');
+insert into Khachhang values (N'KH4',N'Vũ Thị Lan Anh',N'Nữ',N'1998-05-15',N'Cao Bằng',N'079202645231',N'0381841069');
+insert into Khachhang values (N'KH5',N'Trần Thiên Phú',N'Nam',N'1995-07-15',N'TPHCM',N'079275315948',N'0374475689');
+insert into Khachhang values (N'KH6',N'Hoàng Giang',N'Nữ',N'1990-05-20',N'Nghệ An',N'079254316879',N'0395712648');
+insert into Khachhang values (N'KH7',N'Văn Công Hào',N'Nam',N'2002-07-09',N'Bình Định',N'079204587113',N'0381401599');
+insert into Khachhang values (N'KH8',N'Trần Hoàng Triều',N'Nam',N'2002-06-15',N'TPHCM',N'079202047113',N'0381402689');
+insert into Khachhang values (N'KH9',N'Kiều Oanh',N'Nữ',N'2002-01-15',N'TPHCM',N'079202001413',N'0381490689');
+insert into Khachhang values (N'KH10',N'Hồng Gấm',N'Nữ',N'2003-05-30',N'Điện Biên',N'079342001113',N'0381475689');
+
+insert into Phong values (N'MP1',1,N'Phòng Đơn',N'600000',N'Yes'); 
+insert into Phong values (N'MP2',2,N'Phòng Đôi',N'900000',N'No');
+insert into Phong values (N'MP3',3,N'Phòng Đơn',N'600000',N'Yes');
+insert into Phong values (N'MP4',4,N'Phòng Đơn',N'600000',N'No');
+insert into Phong values (N'MP5',5,N'Phòng Đôi',N'900000',N'Yes');
+insert into Phong values (N'MP6',6,N'Phòng Đôi',N'900000',N'Yes');
+insert into Phong values (N'MP7',7,N'Phòng Đơn',N'600000',N'No');
+insert into Phong values (N'MP8',8,N'Phòng Đôi',N'900000',N'Yes');
+insert into Phong values (N'MP9',9,N'Phòng Đơn',N'600000',N'No');
+insert into Phong values (N'MP10',10,N'Phòng Đôi',N'900000',N'Yes');
+
+insert into Nhanvien values (N'NV1',N'Cẩm Liên',N'2000-04-30',N'Nữ',N'TPHCM',N'0396524871',N'2016-11-12',N'Lễ tân',N'5000000');
+insert into Nhanvien values (N'NV2',N'Cẩm Thơ',N'1990-06-30',N'Nữ',N'Đà Nẵng',N'0396478219',N'2013-10-12',N'Thu ngân',N'7000000');
+insert into Nhanvien values (N'NV3',N'Hoàng Trung',N'2000-08-28',N'Nam',N'Quãng Ngãi',N'0396528912',N'2016-11-26',N'Lễ tân',N'5000000');
+insert into Nhanvien values (N'NV4',N'Thái Hoàng',N'1995-01-04',N'Nam',N'TPHCM',N'0396521597',N'2015-11-12',N'Thu ngân',N'7000000');
+insert into Nhanvien values (N'NV5',N'Phùng Lan Hoa',N'1996-03-31',N'Nữ',N'TPHCM',N'0396535491',N'2016-01-15',N'Lễ tân',N'5000000');
+
+insert into Hoadonthanhtoan values (N'HD1',N'2022-03-15','',N'KH1',N'NV1');
+insert into Hoadonthanhtoan values (N'HD2',N'2022-04-20','',N'KH2',N'NV1');
+insert into Hoadonthanhtoan values (N'HD3',N'2022-05-16','',N'KH3',N'NV2');
+insert into Hoadonthanhtoan values (N'HD4',N'2022-03-30','',N'KH4',N'NV2');
+insert into Hoadonthanhtoan values (N'HD5',N'2022-07-15','',N'KH5',N'NV2');
+insert into Hoadonthanhtoan values (N'HD6',N'2022-08-13','',N'KH6',N'NV3');
+insert into Hoadonthanhtoan values (N'HD7',N'2022-02-17','',N'KH7',N'NV3');
+insert into Hoadonthanhtoan values (N'HD8',N'2022-10-19','',N'KH8',N'NV4');
+insert into Hoadonthanhtoan values (N'HD9',N'2022-01-15','',N'KH9',N'NV4');
+insert into Hoadonthanhtoan values (N'HD10',N'2022-09-15','',N'KH10',N'NV5');
+
+insert into Phieuthue values (N'PT1',N'KH1',N'2022-03-10',N'100000', 1);
+insert into Phieuthue values (N'PT2',N'KH2',N'2022-04-10',N'100000', 2);
+insert into Phieuthue values (N'PT3',N'KH3',N'2022-05-10',N'100000', 4);
+insert into Phieuthue values (N'PT4',N'KH4',N'2022-03-10',N'100000', 3);
+insert into Phieuthue values (N'PT5',N'KH5',N'2022-07-10',N'100000', 5);
+insert into Phieuthue values (N'PT6',N'KH6',N'2022-08-10',N'100000', 3);
+insert into Phieuthue values (N'PT7',N'KH7',N'2022-02-10',N'100000', 2);
+insert into Phieuthue values (N'PT8',N'KH8',N'2022-10-10',N'100000', 4);
+insert into Phieuthue values (N'PT9',N'KH9',N'2022-01-10',N'100000', 1);
+insert into Phieuthue values (N'PT10',N'KH10',N'2022-09-10',N'100000', 2);
+
+insert into Chitietphieuthuephong values (N'PT1',N'MP1');
+insert into Chitietphieuthuephong values (N'PT2',N'MP2');
+insert into Chitietphieuthuephong values (N'PT3',N'MP3');
+insert into Chitietphieuthuephong values (N'PT4',N'MP4');
+insert into Chitietphieuthuephong values (N'PT5',N'MP5');
+insert into Chitietphieuthuephong values (N'PT6',N'MP6');
+insert into Chitietphieuthuephong values (N'PT7',N'MP7');
+insert into Chitietphieuthuephong values (N'PT8',N'MP8');
+insert into Chitietphieuthuephong values (N'PT9',N'MP9');
+insert into Chitietphieuthuephong values (N'PT10',N'MP10');
+
+insert into Dichvu values (N'DV1',N'Xông hơi',N'50000');
+insert into Dichvu values (N'DV2',N'Massage',N'100000');
+insert into Dichvu values (N'DV3',N'Tắm bể bơi',N'30000');
+insert into Dichvu values (N'DV4',N'Giặt ủi',N'30000');
+
+insert into Dichvusudung values (N'DV1',N'KH1');
+insert into Dichvusudung values (N'DV1',N'KH2');
+insert into Dichvusudung values (N'DV1',N'KH3');
+insert into Dichvusudung values (N'DV2',N'KH4');
+insert into Dichvusudung values (N'DV2',N'KH5');
+insert into Dichvusudung values (N'DV2',N'KH6');
+insert into Dichvusudung values (N'DV3',N'KH1');
+insert into Dichvusudung values (N'DV3',N'KH7');
+insert into Dichvusudung values (N'DV3',N'KH8');
+insert into Dichvusudung values (N'DV4',N'KH9');
+
+insert into Chitiethoadon values (N'DV1',N'PT1',N'HD1');
+insert into Chitiethoadon values (N'DV1',N'PT2',N'HD2');
+insert into Chitiethoadon values (N'DV1',N'PT3',N'HD3');
+insert into Chitiethoadon values (N'DV2',N'PT4',N'HD4');
+insert into Chitiethoadon values (N'DV2',N'PT5',N'HD5');
+insert into Chitiethoadon values (N'DV2',N'PT6',N'HD6');
+insert into Chitiethoadon values (N'DV3',N'PT7',N'HD7');
+insert into Chitiethoadon values (N'DV3',N'PT8',N'HD8');
+insert into Chitiethoadon values (N'DV3',N'PT9',N'HD9');
+insert into Chitiethoadon values (N'DV4',N'PT10',N'HD10');
+
+go
+--- cau 9 : thanh tien
+create proc sp_thanhtien (@makh nvarchar(15))
+as
+	begin
+		declare @tongtien float, @tiendv float
+		select @tiendv = sum(Dichvu.giadichvu) 
+		from Dichvusudung inner join  Khachhang on Khachhang.makhachhang = Dichvusudung.makhachhang  
+			inner join Dichvu on Dichvusudung.madichvu = Dichvu.madichvu
+		where Khachhang.makhachhang = 'KH1'
+		select @tongtien = (Phong.giaphong * Phieuthue.soluongP + @tiendv) - Phieuthue.sotiendattruoc
+		from Khachhang, Dichvusudung, Dichvu, Phieuthue, Chitietphieuthuephong, Phong
+		where Khachhang.makhachhang = Dichvusudung.makhachhang and  Dichvusudung.madichvu = Dichvu.madichvu and Khachhang.makhachhang = Phieuthue.makhachhang
+		and Phieuthue.maphieuthue = Chitietphieuthuephong.maphieuthue and Phong.maphong = Chitietphieuthuephong.maphong and Khachhang.makhachhang = @makh
+		update Hoadonthanhtoan set thanhtien = @tongtien where makhachhang = @makh
+	end
+go
+sp_thanhtien 'KH1'
+go
+select sum(Dichvu.giadichvu)
+from Khachhang, Dichvusudung, Dichvu, Phieuthue, Chitietphieuthuephong, Phong
+where Khachhang.makhachhang = Dichvusudung.makhachhang and  Dichvusudung.madichvu = Dichvu.madichvu and Khachhang.makhachhang = Phieuthue.makhachhang
+	and Phieuthue.maphieuthue = Chitietphieuthuephong.maphieuthue and Phong.maphong = Chitietphieuthuephong.maphong and Khachhang.makhachhang = 'KH1'
+go
+select sum(Dichvu.giadichvu) 
+from Dichvusudung inner join  Khachhang on Khachhang.makhachhang = Dichvusudung.makhachhang  
+	inner join Dichvu on Dichvusudung.madichvu = Dichvu.madichvu
+where Khachhang.makhachhang = 'KH1'

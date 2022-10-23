@@ -95,9 +95,9 @@
             this.grThongtin.Controls.Add(this.lbDate);
             this.grThongtin.Controls.Add(this.lbName);
             this.grThongtin.Controls.Add(this.lbTile);
-            this.grThongtin.Location = new System.Drawing.Point(1, 1);
+            this.grThongtin.Location = new System.Drawing.Point(-2, -3);
             this.grThongtin.Name = "grThongtin";
-            this.grThongtin.Size = new System.Drawing.Size(592, 515);
+            this.grThongtin.Size = new System.Drawing.Size(595, 519);
             this.grThongtin.TabIndex = 0;
             this.grThongtin.TabStop = false;
             this.grThongtin.Text = "Thông tin";
@@ -128,6 +128,7 @@
             // 
             this.btLammoi.AutoSize = true;
             this.btLammoi.BackColor = System.Drawing.SystemColors.Control;
+            this.btLammoi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLammoi.Location = new System.Drawing.Point(324, 429);
             this.btLammoi.Name = "btLammoi";
             this.btLammoi.Size = new System.Drawing.Size(82, 32);
@@ -217,7 +218,7 @@
             this.pnChucvu.Controls.Add(this.rbLetan);
             this.pnChucvu.Location = new System.Drawing.Point(93, 259);
             this.pnChucvu.Name = "pnChucvu";
-            this.pnChucvu.Size = new System.Drawing.Size(204, 37);
+            this.pnChucvu.Size = new System.Drawing.Size(170, 37);
             this.pnChucvu.TabIndex = 8;
             // 
             // rbThungan
@@ -379,7 +380,7 @@
             this.listVDs.GridLines = true;
             this.listVDs.Location = new System.Drawing.Point(3, 52);
             this.listVDs.Name = "listVDs";
-            this.listVDs.Size = new System.Drawing.Size(705, 463);
+            this.listVDs.Size = new System.Drawing.Size(705, 435);
             this.listVDs.TabIndex = 1;
             this.listVDs.UseCompatibleStateImageBehavior = false;
             this.listVDs.View = System.Windows.Forms.View.Details;
@@ -446,7 +447,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(1299, 518);
+            this.ClientSize = new System.Drawing.Size(1299, 515);
             this.Controls.Add(this.pnDS);
             this.Controls.Add(this.grThongtin);
             this.Name = "Input";
