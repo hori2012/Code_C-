@@ -157,13 +157,13 @@ namespace QLNhanVien
             lvi.SubItems.Add(cv);
             if (message.Length == 0)
             {
-                string sql1 = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', N'" + dateT.Value + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
+                string sql1 = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', N'" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
                 cmd = new SqlCommand(sql1, cnn);
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.InsertCommand = new SqlCommand(sql1, cnn);
                 adapter.InsertCommand.ExecuteNonQuery();
                 lbNotify.Text = "Thêm thành công !";
-                //string sql2 = "insert into taikhoan values('" + id + "', '" + dateT.Value + "'";
+                //string sql2 = "insert into taikhoan values('" + id + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                 //cmd = new SqlCommand(sql2, cnn);
                 //adapter.InsertCommand = new SqlCommand(sql2, cnn);
                 //adapter.InsertCommand.ExecuteNonQuery();
