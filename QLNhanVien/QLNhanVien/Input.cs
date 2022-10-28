@@ -8,6 +8,23 @@ namespace QLNhanVien
             InitializeComponent();                                 
         }
 
+        public int ConvertString(string str)
+        {
+            int answer = 0;
+            string subStr = "";
+            for (int i = 5; i < str.Length; i++)
+            {
+                subStr += str[i];
+            }
+            answer = subStr[0] - '0';
+            for (int i = 1; i < subStr.Length; i++)
+            {
+                answer *= 10;
+                answer += subStr[i];
+            }
+            return answer;
+        } 
+
         private void btXoa_Click(object sender, EventArgs e)
         {
             btXoa.BackColor = Color.LightSteelBlue;
@@ -60,12 +77,12 @@ namespace QLNhanVien
             int flag = listVDs.Items.Count;
             while (dataReader.Read())
             {
-                if (dataReader.GetString(0).Contains("NV.LT"))
+                if (dataReader.GetString(0).Contains("NV.LT") && count1 == ConvertString(dataReader.GetString(0)))
                 {
                     count1++;
                 }
 
-                if (dataReader.GetString(0).Contains("NV.TN"))
+                if (dataReader.GetString(0).Contains("NV.TN") && count2 == ConvertString(dataReader.GetString(0)))
                 {
                     count2++;
                 }
@@ -157,16 +174,16 @@ namespace QLNhanVien
             lvi.SubItems.Add(cv);
             if (message.Length == 0)
             {
-                string sql1 = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', N'" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
+                string sql1 = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
                 cmd = new SqlCommand(sql1, cnn);
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.InsertCommand = new SqlCommand(sql1, cnn);
                 adapter.InsertCommand.ExecuteNonQuery();
                 lbNotify.Text = "Thêm thành công !";
-                //string sql2 = "insert into taikhoan values('" + id + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "'";
-                //cmd = new SqlCommand(sql2, cnn);
-                //adapter.InsertCommand = new SqlCommand(sql2, cnn);
-                //adapter.InsertCommand.ExecuteNonQuery();
+                string sql2 = "insert into taikhoan values('" + id + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "')";
+                cmd = new SqlCommand(sql2, cnn);
+                adapter.InsertCommand = new SqlCommand(sql2, cnn);
+                adapter.InsertCommand.ExecuteNonQuery();
             }
             else
             {

@@ -167,6 +167,7 @@
             // dateT
             // 
             this.dateT.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dateT.CustomFormat = "yyyy-MM-dd";
             this.dateT.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateT.Location = new System.Drawing.Point(93, 164);
             this.dateT.Name = "dateT";

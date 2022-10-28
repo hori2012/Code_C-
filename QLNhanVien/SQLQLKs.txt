@@ -175,30 +175,51 @@ insert into Chitiethoadon values (N'DV3',N'PT9',N'HD9');
 insert into Chitiethoadon values (N'DV4',N'PT10',N'HD10');
 
 go
+--- tang so luong phong khi insert phong
+create trigger tg_SoluongP on Chitietphieuthuephong
+for insert
+as
+begin
+	declare @dem int;
+	SELECT @dem = count(Chitietphieuthuephong.maphieuthue)
+	FROM Chitietphieuthuephong
+	group by Chitietphieuthuephong.maphieuthue
+	update Phieuthue set soluongP = @dem + 1
+	from Chitietphieuthuephong, inserted
+	where Chitietphieuthuephong.maphieuthue = inserted.maphieuthue and Phieuthue.maphieuthue = inserted.maphieuthue
+end	
+-- gan gia tri so luong phong cho viec insert truoc khi co trigger
+go
+create proc sp_them @makh nvarchar(10)
+as
+begin
+	declare @dem int;
+	SELECT @dem = count(Chitietphieuthuephong.maphieuthue)
+	FROM Chitietphieuthuephong INNER JOIN Phieuthue ON Chitietphieuthuephong.maphieuthue = Phieuthue.maphieuthue INNER JOIN
+         Khachhang ON Phieuthue.makhachhang = Khachhang.makhachhang INNER JOIN Phong ON Chitietphieuthuephong.maphong = Phong.maphong
+	where Khachhang.makhachhang = @makh
+	group by Chitietphieuthuephong.maphieuthue
+	update Phieuthue set soluongP = @dem where makhachhang = @makh
+end
+go
+sp_them 'KH2'
+go
 --- cau 9 : thanh tien
-create proc sp_thanhtien (@makh nvarchar(15))
+   create proc sp_thanhtien1 (@makh nvarchar(15))
 as
 	begin
-		declare @tongtien float, @tiendv float
+		declare @tongtien float, @tiendv float, @tienPhong float
 		select @tiendv = sum(Dichvu.giadichvu) 
 		from Dichvusudung inner join  Khachhang on Khachhang.makhachhang = Dichvusudung.makhachhang  
 			inner join Dichvu on Dichvusudung.madichvu = Dichvu.madichvu
-		where Khachhang.makhachhang = 'KH1'
-		select @tongtien = (Phong.giaphong * Phieuthue.soluongP + @tiendv) - Phieuthue.sotiendattruoc
-		from Khachhang, Dichvusudung, Dichvu, Phieuthue, Chitietphieuthuephong, Phong
-		where Khachhang.makhachhang = Dichvusudung.makhachhang and  Dichvusudung.madichvu = Dichvu.madichvu and Khachhang.makhachhang = Phieuthue.makhachhang
-		and Phieuthue.maphieuthue = Chitietphieuthuephong.maphieuthue and Phong.maphong = Chitietphieuthuephong.maphong and Khachhang.makhachhang = @makh
+		where Khachhang.makhachhang = @makh
+		select @tienPhong = sum(Phong.giaphong * (DAY(getdate()) - DAY(Phieuthue.ngaylapphieuthue)))
+		from Khachhang, Phieuthue, Phong, Chitietphieuthuephong
+		where Khachhang.makhachhang = Phieuthue.makhachhang and Phieuthue.maphieuthue = Chitietphieuthuephong.maphieuthue and Phong.maphong = Chitietphieuthuephong.maphong and Khachhang.makhachhang = @makh
+		select @tongtien = (@tiendv + @tienPhong) - Phieuthue.sotiendattruoc
+		from Khachhang, Phieuthue
+		where Khachhang.makhachhang = Phieuthue.makhachhang
 		update Hoadonthanhtoan set thanhtien = @tongtien where makhachhang = @makh
 	end
 go
-sp_thanhtien 'KH1'
-go
-select sum(Dichvu.giadichvu)
-from Khachhang, Dichvusudung, Dichvu, Phieuthue, Chitietphieuthuephong, Phong
-where Khachhang.makhachhang = Dichvusudung.makhachhang and  Dichvusudung.madichvu = Dichvu.madichvu and Khachhang.makhachhang = Phieuthue.makhachhang
-	and Phieuthue.maphieuthue = Chitietphieuthuephong.maphieuthue and Phong.maphong = Chitietphieuthuephong.maphong and Khachhang.makhachhang = 'KH1'
-go
-select sum(Dichvu.giadichvu) 
-from Dichvusudung inner join  Khachhang on Khachhang.makhachhang = Dichvusudung.makhachhang  
-	inner join Dichvu on Dichvusudung.madichvu = Dichvu.madichvu
-where Khachhang.makhachhang = 'KH1'
+sp_thanhtien1 'KH1'

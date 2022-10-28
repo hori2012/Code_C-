@@ -18,7 +18,7 @@ namespace QLNhanVien
             InitializeComponent();
         }
         //private string name = "Unknows";
-        private string id = "";
+        private string id = " Unknows";
         private string phone = "Unknows";
         private string address = "Unknows";
         private string money = "Unknows";
@@ -27,6 +27,22 @@ namespace QLNhanVien
         {
             InitializeComponent();
             this.id = id;
+        }
+       public int ConvertString(string str)
+        {
+            int answer = 0;
+            string subStr = "";
+            for(int i = 5; i < str.Length; i++)
+            {
+                subStr += str[i];
+            }
+            answer = subStr[0] - '0';
+            for(int i = 1; i < subStr.Length; i++)
+            {
+                answer *= 10;
+                answer += subStr[i];
+            }
+            return answer;
         }
         private void btCapnhat_Click(object sender, EventArgs e)
         {
@@ -57,47 +73,78 @@ namespace QLNhanVien
                 adpter.UpdateCommand = new SqlCommand(sql, cnn);
                 adpter.UpdateCommand.ExecuteNonQuery();
             }
-            if (rbLetan.Checked == false)
+            if (rbThungan.Checked == true && string.Compare(rbLetan.Text, cv) == 0)
             {
                 SqlDataReader dataReader;
                 int count = 1;
-                string sql1 = "select manv from nhanvien";
-                cmd = new SqlCommand(sql1, cnn);
+                sql = "select manv from nhanvien where manv like '" + "NV.TN_" + "'";
+                cmd = new SqlCommand(sql, cnn);
                 dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    if (dataReader.GetString(0).Contains("NV.TN"))
+                    if (count == ConvertString(dataReader.GetString(0)))
                     {
                         count++;
                     }
                 }
-                string idbkup = "NV.TN" + count;
                 dataReader.Close();
-                sql = "update nhanvien set chucvu = N'" + rbThungan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                string gender = "";
+                string idbkup = "NV.TN" + count;
+
+                if (rbNam.Checked)
+                {
+                    gender = rbNam.Text;
+                }
+                if (rbNu.Checked)
+                {
+                    gender = rbNu.Text;
+                }
+                dataReader.Close();
+                sql = "delete from nhanvien where manv = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
-                adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                adpter.UpdateCommand.ExecuteNonQuery();
+                adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand.ExecuteNonQuery();
+
+                sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.InsertCommand = new SqlCommand(sql, cnn);
+                adpter.InsertCommand.ExecuteNonQuery();
             }
-            else
+            if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
             {
                 SqlDataReader dataReader;
                 int count = 1;
-                string sql1 = "select manv from nhanvien";
-                cmd = new SqlCommand(sql1, cnn);
+                sql = "select manv from nhanvien where manv like '" + "NV.LT_" + "'";
+                cmd = new SqlCommand(sql, cnn);
                 dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    if (dataReader.GetString(0).Contains("NV.LT"))
+                    if (count == ConvertString(dataReader.GetString(0)))
                     {
                         count++;
                     }
                 }
                 string idbkup = "NV.LT" + count;
+                string gender = "";
+                if (rbNam.Checked)
+                {
+                    gender = rbNam.Text;
+                }
+                if (rbNu.Checked)
+                {
+                    gender = rbNu.Text;
+                }
+                MessageBox.Show(idbkup);
                 dataReader.Close();
-                sql = "update nhanvien set chucvu = N'" + rbLetan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                sql = "delete from nhanvien where manv = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
-                adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                adpter.UpdateCommand.ExecuteNonQuery();
+                adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand.ExecuteNonQuery();
+
+                sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.InsertCommand = new SqlCommand(sql, cnn);
+                adpter.InsertCommand.ExecuteNonQuery();
             }
             if (string.Compare(phone, tbSdt.Text) != 0 && string.Compare(address, tbAdd.Text) != 0 && string.Compare(money, tbMoney.Text) == 0)
             {
@@ -105,47 +152,79 @@ namespace QLNhanVien
                 cmd = new SqlCommand(sql, cnn);
                 adpter.UpdateCommand = new SqlCommand(sql, cnn);
                 adpter.UpdateCommand.ExecuteNonQuery();
-                if (rbLetan.Checked == false)
+                if (rbThungan.Checked == true && string.Compare(rbLetan.Text, cv) == 0)
                 {
                     SqlDataReader dataReader;
                     int count = 1;
-                    string sql1 = "select manv from nhanvien";
-                    cmd = new SqlCommand(sql1, cnn);
+                    sql = "select manv from nhanvien where manv like '" + "NV.TN_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
                     dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        if (dataReader.GetString(0).Contains("NV.TN"))
+
+                        if (count == ConvertString(dataReader.GetString(0)))
                         {
                             count++;
                         }
+
                     }
-                    string idbkup = "NV.TN" + count;
                     dataReader.Close();
-                    sql = "update nhanvien set chucvu = N'" + rbThungan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                    string gender = "";
+                    string idbkup = "NV.TN" + count;
+
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                        gender = rbNu.Text;
+                    }
+                    dataReader.Close();
+                    sql = "delete from nhanvien where manv = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand.ExecuteNonQuery();
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
                 }
-                else
+                if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
                 {
                     SqlDataReader dataReader;
                     int count = 1;
-                    string sql1 = "select manv from nhanvien";
-                    cmd = new SqlCommand(sql1, cnn);
+                    sql = "select manv from nhanvien where manv like '" + "NV.LT_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
                     dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        if (dataReader.GetString(0).Contains("NV.LT"))
+                        if (count == ConvertString(dataReader.GetString(0)))
                         {
                             count++;
                         }
                     }
                     string idbkup = "NV.LT" + count;
+                    string gender = "";
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                        gender = rbNu.Text;
+                    }
                     dataReader.Close();
-                    sql = "update nhanvien set chucvu = N'" + rbLetan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                    sql = "delete from nhanvien where manv = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand.ExecuteNonQuery();
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
                 }
             }
             if (string.Compare(phone, tbSdt.Text) != 0 && string.Compare(address, tbAdd.Text) == 0 && string.Compare(money, tbMoney.Text) != 0)
@@ -154,110 +233,169 @@ namespace QLNhanVien
                 cmd = new SqlCommand(sql, cnn);
                 adpter.UpdateCommand = new SqlCommand(sql, cnn);
                 adpter.UpdateCommand.ExecuteNonQuery();
-                if (rbLetan.Checked == false)
+                if (rbThungan.Checked == true && string.Compare(rbLetan.Text, cv) == 0)
                 {
                     SqlDataReader dataReader;
                     int count = 1;
-                    string sql1 = "select manv from nhanvien";
-                    cmd = new SqlCommand(sql1, cnn);
+                    sql = "select manv from nhanvien where manv like '" + "NV.TN_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
                     dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        if (dataReader.GetString(0).Contains("NV.TN"))
+                        if (count == ConvertString(dataReader.GetString(0)))
                         {
                             count++;
                         }
                     }
-                    string idbkup = "NV.TN" + count;
                     dataReader.Close();
-                    sql = "update nhanvien set chucvu = N'" + rbThungan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                    string gender = "";
+                    string idbkup = "NV.TN" + count;
+
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                        gender = rbNu.Text;
+                    }
+                    dataReader.Close();
+                    sql = "delete from nhanvien where manv = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand.ExecuteNonQuery();
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
                 }
-                else
+                if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
                 {
                     SqlDataReader dataReader;
                     int count = 1;
-                    string sql1 = "select manv from nhanvien";
-                    cmd = new SqlCommand(sql1, cnn);
+                    sql = "select manv from nhanvien where manv like '" + "NV.LT_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
                     dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        if (dataReader.GetString(0).Contains("NV.LT"))
+                        if (count == ConvertString(dataReader.GetString(0)))
                         {
                             count++;
                         }
                     }
                     string idbkup = "NV.LT" + count;
+                    string gender = "";
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                        gender = rbNu.Text;
+                    }
                     dataReader.Close();
-                    sql = "update nhanvien set chucvu = N'" + rbLetan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
+                    sql = "delete from nhanvien where manv = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand.ExecuteNonQuery();
-                }
-                if (string.Compare(phone, tbSdt.Text) == 0 && string.Compare(address, tbAdd.Text) != 0 && string.Compare(money, tbMoney.Text) != 0)
-                {
-                    sql = "update nhanvien set luong = '" + tbMoney.Text + "', quequan = n'" + tbAdd.Text + "' where manv = '" + this.id + "' ";
-                    cmd = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                    adpter.UpdateCommand.ExecuteNonQuery();
-                    if (rbLetan.Checked == false)
-                    {
-                        SqlDataReader dataReader;
-                        int count = 1;
-                        string sql1 = "select manv from nhanvien";
-                        cmd = new SqlCommand(sql1, cnn);
-                        dataReader = cmd.ExecuteReader();
-                        while (dataReader.Read())
-                        {
-                            if (dataReader.GetString(0).Contains("NV.TN"))
-                            {
-                                count++;
-                            }
-                        }
-                        string idbkup = "NV.TN" + count;
-                        dataReader.Close();
-                        sql = "update nhanvien set chucvu = N'" + rbThungan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
-                        cmd = new SqlCommand(sql, cnn);
-                        adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                        adpter.UpdateCommand.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        SqlDataReader dataReader;
-                        int count = 1;
-                        string sql1 = "select manv from nhanvien";
-                        cmd = new SqlCommand(sql1, cnn);
-                        dataReader = cmd.ExecuteReader();
-                        while (dataReader.Read())
-                        {
-                            if (dataReader.GetString(0).Contains("NV.LT"))
-                            {
-                                count++;
-                            }
-                        }
-                        string idbkup = "NV.LT" + count;
-                        dataReader.Close();
-                        sql = "update nhanvien set chucvu = N'" + rbLetan.Text + "', manv = '" + idbkup + "' where manv = '" + this.id + "'";
-                        cmd = new SqlCommand(sql, cnn);
-                        adpter.UpdateCommand = new SqlCommand(sql, cnn);
-                        adpter.UpdateCommand.ExecuteNonQuery();
-                    }
-                }
-            }
-            if (sql.Length > 0)
-            {
-                cmd.Dispose();
-                MessageBox.Show("Cập nhật thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Cập nhật không thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            cnn.Close();
-        }
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
 
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+                }
+            }
+            if (string.Compare(phone, tbSdt.Text) == 0 && string.Compare(address, tbAdd.Text) != 0 && string.Compare(money, tbMoney.Text) != 0)
+            {
+                sql = "update nhanvien set luong = '" + tbMoney.Text + "', quequan = n'" + tbAdd.Text + "' where manv = '" + this.id + "' ";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.UpdateCommand = new SqlCommand(sql, cnn);
+                adpter.UpdateCommand.ExecuteNonQuery();
+                if (rbThungan.Checked == true && string.Compare(rbLetan.Text, cv) == 0)
+                 {
+                    SqlDataReader dataReader;
+                    int count = 1;
+                    sql = "select manv from nhanvien where manv like '" + "NV.TN_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                     {
+                        if (count == ConvertString(dataReader.GetString(0)))
+                        {
+                            count++;
+                        }
+                    }
+                    dataReader.Close();
+                    string gender = "";
+                    string idbkup = "NV.TN" + count;
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                        gender = rbNu.Text;
+                    }
+                    dataReader.Close();
+                    sql = "delete from nhanvien where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+                    }
+                if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
+                {
+                    SqlDataReader dataReader;
+                    int count = 1;
+                    sql = "select manv from nhanvien where manv like '" + "NV.LT_" + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        if (count == ConvertString(dataReader.GetString(0)))
+                        {
+                            count++;
+                        }
+                    }
+                    string idbkup = "NV.LT" + count;
+                    string gender = "";
+                    if (rbNam.Checked)
+                    {
+                        gender = rbNam.Text;
+                    }
+                    if (rbNu.Checked)
+                    {
+                       gender = rbNu.Text;
+                    }
+                    dataReader.Close();
+                    sql = "delete from nhanvien where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+                    }
+                }
+                if (sql.Length > 0)
+                {
+                    cmd = new SqlCommand();
+                    cmd.Dispose();
+                    MessageBox.Show("Cập nhật thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật không thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                cnn.Close();
+            }
         private void btThoat_Click(object sender, EventArgs e)
         {
             this.Hide();
