@@ -111,7 +111,7 @@ namespace QLNhanVien
             }
             else
             {
-                if (Fix.eventString(lbName.Text))
+                if (Fix.eventString(tbName.Text))
                 {
                     lvi.SubItems.Add(tbName.Text);
                 }

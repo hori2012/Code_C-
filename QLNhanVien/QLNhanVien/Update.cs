@@ -105,7 +105,17 @@ namespace QLNhanVien
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
 
+                sql = "delete from taikhoan where manv = '" + id + "'";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand.ExecuteNonQuery();
+
                 sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.InsertCommand = new SqlCommand(sql, cnn);
+                adpter.InsertCommand.ExecuteNonQuery();
+
+                sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
@@ -141,7 +151,17 @@ namespace QLNhanVien
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
 
+                sql = "delete from taikhoan where manv = '" + id + "'";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                adpter.DeleteCommand.ExecuteNonQuery();
+
                 sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                cmd = new SqlCommand(sql, cnn);
+                adpter.InsertCommand = new SqlCommand(sql, cnn);
+                adpter.InsertCommand.ExecuteNonQuery();
+
+                sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
@@ -186,7 +206,17 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -221,7 +251,17 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
                     sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -265,7 +305,17 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -300,7 +350,17 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
                     sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -343,11 +403,21 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbThungan.Text + "')";
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
+                    sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
-                    }
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+                }
                 if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
                 {
                     SqlDataReader dataReader;
@@ -378,11 +448,21 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
+                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adpter.DeleteCommand.ExecuteNonQuery();
+
                     sql = "insert into nhanvien values('" + idbkup + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + rbLetan.Text + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
-                    }
+
+                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    cmd = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand = new SqlCommand(sql, cnn);
+                    adpter.InsertCommand.ExecuteNonQuery();
+                }
                 }
                 if (sql.Length > 0)
                 {

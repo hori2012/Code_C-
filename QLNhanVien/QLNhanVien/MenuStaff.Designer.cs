@@ -70,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(297, 146);
+            this.label1.Location = new System.Drawing.Point(306, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(207, 31);
             this.label1.TabIndex = 1;
@@ -79,7 +79,7 @@
             // button1
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(177, 291);
+            this.button1.Location = new System.Drawing.Point(177, 271);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 55);
             this.button1.TabIndex = 2;
@@ -90,7 +90,7 @@
             // button2
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(514, 291);
+            this.button2.Location = new System.Drawing.Point(514, 271);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 55);
             this.button2.TabIndex = 3;
@@ -101,7 +101,7 @@
             // button3
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(177, 378);
+            this.button3.Location = new System.Drawing.Point(177, 358);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 55);
             this.button3.TabIndex = 4;
@@ -112,7 +112,7 @@
             // button4
             // 
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(514, 378);
+            this.button4.Location = new System.Drawing.Point(514, 358);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(125, 55);
             this.button4.TabIndex = 5;
@@ -128,7 +128,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(2, 185);
+            this.groupBox1.Location = new System.Drawing.Point(2, 174);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(795, 91);
             this.groupBox1.TabIndex = 6;

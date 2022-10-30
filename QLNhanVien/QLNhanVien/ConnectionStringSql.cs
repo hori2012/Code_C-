@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLNhanVien
 {
-    internal class ConnectionStringSql
+    public class ConnectionStringSql
     {
         static public void connection(ref SqlConnection cnn)
         {

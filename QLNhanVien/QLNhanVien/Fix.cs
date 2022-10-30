@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLNhanVien
 {
-    internal class Fix
+    public class Fix
     {
         static public bool KTString(char c)
         {
@@ -36,21 +36,16 @@ namespace QLNhanVien
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
-            int count = 1;
             for (int i = 0; i < str.Length; i++)
             {
                 if (KTString(str[i]))
                 {
-                    count = 1;
+                    return false;
                 }
-                if ((str[i] >= 65 && str[i] <= 90) && str[i] != 32 && !((str[i] >= 97 && str[i] <= 122)))
+                if (!(((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122)) && str[i] != 32))
                 {
-                    count = 1;
+                    return false;
                 }
-            }
-            if (count == 0)
-            {
-                return false;
             }
             return true;
         }
