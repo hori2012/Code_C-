@@ -32,19 +32,20 @@ namespace QLNhanVien
             }
             return true;
         }
-        static public bool eventString(string str)
+       static public bool eventString(string str)
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
             for (int i = 0; i < str.Length; i++)
             {
-                if (KTString(str[i]))
+                //if (KTString(str[i]))
+                //{
+                //    return false;
+                //}
+                if (!(((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122)) || str[i] == 32 || KTString(str[i])))
                 {
                     return false;
-                }
-                if (!(((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122)) && str[i] != 32))
-                {
-                    return false;
+                   
                 }
             }
             return true;
