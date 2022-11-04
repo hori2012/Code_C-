@@ -3,6 +3,8 @@ namespace QLNhanVien
 {
     public partial class Input : Form
     {
+        private List<int> countLT = new List<int>();
+        private List<int> countTN = new List<int>();
         public Input()
         {
             InitializeComponent();                                 
@@ -17,10 +19,13 @@ namespace QLNhanVien
                 subStr += str[i];
             }
             answer = subStr[0] - '0';
-            for (int i = 1; i < subStr.Length; i++)
+            if (subStr.Length > 1)
             {
-                answer *= 10;
-                answer += subStr[i];
+                for (int i = 1; i < subStr.Length; i++)
+                {
+                    answer *= 10;
+                    answer += (subStr[i] - '0');
+                }
             }
             return answer;
         } 
@@ -68,41 +73,37 @@ namespace QLNhanVien
             SqlConnection cnn = new SqlConnection();
             ConnectionStringSql.connection(ref cnn);
             cnn.Open();
-            SqlCommand cmd;
-            string sql = "select manv from nhanvien";
-            SqlDataReader dataReader;
-            cmd = new SqlCommand(sql, cnn);
-            dataReader = cmd.ExecuteReader();
-            int count1 = 1, count2 = 1;
+            SqlCommand cmd = new SqlCommand();
+            string sql = "";
             int flag = listVDs.Items.Count;
-            while (dataReader.Read())
-            {
-                if (dataReader.GetString(0).Contains("NV.LT") && count1 == ConvertString(dataReader.GetString(0)))
-                {
-                    count1++;
-                }
-
-                if (dataReader.GetString(0).Contains("NV.TN") && count2 == ConvertString(dataReader.GetString(0)))
-                {
-                    count2++;
-                }
-            }
-            dataReader.Close();
-            string cv = "";
             string id = "";
+            string cv = "";
             string gender = "";
+            int count = 1;
             ListViewItem lvi = new ListViewItem();
             if (rbLetan.Checked)
             {
-                id = "NV.LT" + count1;
+                while (countLT.Contains(count))
+                {
+                    count++;
+                }
+                id = "NV.LT" + count;
                 lvi = listVDs.Items.Add(id);
                 cv = "Lễ Tân";
+                countLT.Add(count);
+                countLT.Sort();
             }
             if (rbThungan.Checked)
             {
-                id = "NV.TN" + count2;
+                while (countTN.Contains(count))
+                {
+                    count++;
+                }
+                id = "NV.TN" + count;
                 lvi = listVDs.Items.Add(id);
                 cv = "Thu Ngân";
+                countTN.Add(count);
+                countTN.Sort();
             }
             string message = "";
             if (tbName.Text.Length == 0)
@@ -174,15 +175,15 @@ namespace QLNhanVien
             lvi.SubItems.Add(cv);
             if (message.Length == 0)
             {
-                string sql1 = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
-                cmd = new SqlCommand(sql1, cnn);
+                sql = "insert into nhanvien values('" + id + "', N'" + tbName.Text + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "', N'" + gender + "', N'" + tbAdd.Text + "', '" + tbSdt.Text + "', '" + tbMoney.Text + "', N'" + cv + "')";
+                cmd = new SqlCommand(sql, cnn);
                 SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.InsertCommand = new SqlCommand(sql1, cnn);
+                adapter.InsertCommand = new SqlCommand(sql, cnn);
                 adapter.InsertCommand.ExecuteNonQuery();
                 lbNotify.Text = "Thêm thành công !";
-                string sql2 = "insert into taikhoan values('" + id + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "')";
-                cmd = new SqlCommand(sql2, cnn);
-                adapter.InsertCommand = new SqlCommand(sql2, cnn);
+                sql = "insert into taikhoan values('" + id + "', '" + dateT.Value.ToString("yyyy-MM-dd") + "')";
+                cmd = new SqlCommand(sql, cnn);
+                adapter.InsertCommand = new SqlCommand(sql, cnn);
                 adapter.InsertCommand.ExecuteNonQuery();
             }
             else
@@ -216,6 +217,32 @@ namespace QLNhanVien
                 this.Close();
             }
            
+        }
+
+        private void Input_Load(object sender, EventArgs e)
+        {
+            SqlConnection cnn = new SqlConnection();
+            QLNhanVien.ConnectionStringSql.connection(ref cnn);
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("select manv from nhanvien", cnn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader.GetString(0).Contains("NV.LT"))
+                {
+                    countLT.Add(ConvertString(reader.GetString(0)));
+                }
+                if (reader.GetString(0).Contains("NV.TN"))
+                {
+                    countTN.Add(ConvertString(reader.GetString(0)));
+                }
+            }
+            countLT.Sort();
+            countTN.Sort();
+            reader.Close();
+            cmd.Dispose();
+            cnn.Close();
+
         }
     }
 }

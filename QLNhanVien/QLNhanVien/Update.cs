@@ -23,6 +23,8 @@ namespace QLNhanVien
         private string address = "Unknows";
         private string money = "Unknows";
         private string cv = "Unknows";
+        private List<int> countLT = new List<int>();
+        private List<int> countTN = new List<int>();
         public Update(string id)
         {
             InitializeComponent();
@@ -75,22 +77,13 @@ namespace QLNhanVien
             }
             if (rbThungan.Checked == true && string.Compare(rbLetan.Text, cv) == 0)
             {
-                SqlDataReader dataReader;
                 int count = 1;
-                sql = "select manv from nhanvien where manv like '" + "NV.TN_" + "'";
-                cmd = new SqlCommand(sql, cnn);
-                dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    if (count == ConvertString(dataReader.GetString(0)))
-                    {
-                        count++;
-                    }
-                }
-                dataReader.Close();
                 string gender = "";
+                while (countTN.Contains(count))
+                {
+                    count++;
+                }
                 string idbkup = "NV.TN" + count;
-
                 if (rbNam.Checked)
                 {
                     gender = rbNam.Text;
@@ -99,13 +92,12 @@ namespace QLNhanVien
                 {
                     gender = rbNu.Text;
                 }
-                dataReader.Close();
                 sql = "delete from nhanvien where manv = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
 
-                sql = "delete from taikhoan where manv = '" + id + "'";
+                sql = "delete from taikhoan where tendn = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
@@ -115,27 +107,20 @@ namespace QLNhanVien
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
 
-                sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
             }
             if (rbLetan.Checked == true && string.Compare(rbThungan.Text, cv) == 0)
             {
-                SqlDataReader dataReader;
                 int count = 1;
-                sql = "select manv from nhanvien where manv like '" + "NV.LT_" + "'";
-                cmd = new SqlCommand(sql, cnn);
-                dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
+                string gender = "";
+                while (countLT.Contains(count))
                 {
-                    if (count == ConvertString(dataReader.GetString(0)))
-                    {
-                        count++;
-                    }
+                    count++;
                 }
                 string idbkup = "NV.LT" + count;
-                string gender = "";
                 if (rbNam.Checked)
                 {
                     gender = rbNam.Text;
@@ -144,14 +129,12 @@ namespace QLNhanVien
                 {
                     gender = rbNu.Text;
                 }
-                MessageBox.Show(idbkup);
-                dataReader.Close();
                 sql = "delete from nhanvien where manv = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
 
-                sql = "delete from taikhoan where manv = '" + id + "'";
+                sql = "delete from taikhoan where tendn = '" + id + "'";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand = new SqlCommand(sql, cnn);
                 adpter.DeleteCommand.ExecuteNonQuery();
@@ -161,7 +144,7 @@ namespace QLNhanVien
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
 
-                sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                 cmd = new SqlCommand(sql, cnn);
                 adpter.InsertCommand = new SqlCommand(sql, cnn);
                 adpter.InsertCommand.ExecuteNonQuery();
@@ -206,7 +189,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -216,7 +199,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -251,7 +234,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -261,7 +244,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -305,7 +288,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -315,7 +298,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -350,7 +333,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -360,7 +343,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -403,7 +386,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -413,7 +396,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -448,7 +431,7 @@ namespace QLNhanVien
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
 
-                    sql = "delete from taikhoan where manv = '" + id + "'";
+                    sql = "delete from taikhoan where tendn = '" + id + "'";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand = new SqlCommand(sql, cnn);
                     adpter.DeleteCommand.ExecuteNonQuery();
@@ -458,7 +441,7 @@ namespace QLNhanVien
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
 
-                    sql = "insert into taikhoan values('" + idbkup + "''" + dateT.Value.ToString("yyyy-MM-dd") + "'";
+                    sql = "insert into taikhoan values('" + idbkup + "','" + dateT.Value.ToString("yyyy-MM-dd") + "')";
                     cmd = new SqlCommand(sql, cnn);
                     adpter.InsertCommand = new SqlCommand(sql, cnn);
                     adpter.InsertCommand.ExecuteNonQuery();
@@ -522,8 +505,24 @@ namespace QLNhanVien
                 }
             }
             reader.Close();
+            cmd = new SqlCommand("Select manv from nhanvien", cnn);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader.GetString(0).Contains("NV.LT"))
+                {
+                    countLT.Add(ConvertString(reader.GetString(0)));
+                }
+                if (reader.GetString(0).Contains("NV.TN"))
+                {
+                    countTN.Add(ConvertString(reader.GetString(0)));
+                }
+            }
+            reader.Close();
             cmd.Dispose();
             cnn.Close();
+            countLT.Sort();
+            countTN.Sort();
         }
     }
 }

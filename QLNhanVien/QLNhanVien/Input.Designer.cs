@@ -454,6 +454,7 @@
             this.Name = "Input";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhân viên";
+            this.Load += new System.EventHandler(this.Input_Load);
             this.grThongtin.ResumeLayout(false);
             this.grThongtin.PerformLayout();
             this.pnChucvu.ResumeLayout(false);

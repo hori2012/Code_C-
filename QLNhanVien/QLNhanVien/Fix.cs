@@ -32,7 +32,7 @@ namespace QLNhanVien
             }
             return true;
         }
-       static public bool eventString(string str)
+        static public bool eventString(string str)
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
