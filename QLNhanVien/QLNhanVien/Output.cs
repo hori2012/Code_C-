@@ -308,6 +308,9 @@ namespace QLNhanVien
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     adapter.DeleteCommand = new SqlCommand(sql, cnn);
                     adapter.DeleteCommand.ExecuteNonQuery();
+                    sql = "delete from taikhoan where tendn = '" + value1 + "'";
+                    adapter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adapter.DeleteCommand.ExecuteNonQuery();
                     cmd.Dispose();
                     cnn.Close();
                 }

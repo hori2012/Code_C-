@@ -54,6 +54,9 @@ namespace QLNhanVien
                     adapter.DeleteCommand.ExecuteNonQuery();
                     listVDs.Items.Remove(listVDs.SelectedItems[0]);
                     MessageBox.Show("Xóa thành công " + value + " !!","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sql = "delete from taikhoan where tendn = '" + value + "'";
+                    adapter.DeleteCommand = new SqlCommand(sql, cnn);
+                    adapter.DeleteCommand.ExecuteNonQuery();
                     cmd.Dispose();
                     cnn.Close();
                 }
